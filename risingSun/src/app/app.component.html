@@ -1,0 +1,562 @@
+<div class="wholepage">
+  <div class="sky"></div>
+  <svg
+    class="sun"
+    width="100vw"
+    height="100vh"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <filter id="inset-shadow" x="-60" y="0" width="100" height="100%">
+        <feComponentTransfer in="SourceAlpha">
+          <feFuncA type="table" tableValues="1 0" />
+        </feComponentTransfer>
+        <feGaussianBlur stdDeviation="3" />
+        <feOffset class="lightoffset" dx="5" dy="0" result="offsetblur" />
+        <feFlood
+          class="parlamentcolor"
+          flood-color="#fefefe80"
+          result="color"
+        />
+        <feComposite in2="offsetblur" operator="in" />
+        <feComposite in2="SourceAlpha" operator="in" />
+        <feMerge>
+          <feMergeNode in="SourceGraphic" />
+          <feMergeNode />
+        </feMerge>
+      </filter>
+
+      <filter id="inset-shadow2" x="-60" y="0" width="100" height="100%">
+        <feComponentTransfer in="SourceAlpha">
+          <feFuncA type="table" tableValues="1 0" />
+        </feComponentTransfer>
+        <feGaussianBlur stdDeviation="3" />
+        <feOffset class="lightoffset" dx="5" dy="0" result="offsetblur" />
+        <feFlood class="leafcolor" flood-color="#00640040" result="color" />
+        <feComposite in2="offsetblur" operator="in" />
+        <feComposite in2="SourceAlpha" operator="in" />
+        <feMerge>
+          <feMergeNode in="SourceGraphic" />
+          <feMergeNode />
+        </feMerge>
+      </filter>
+
+      <filter id="inset-shadow3" x="-60" y="0" width="100" height="100%">
+        <feComponentTransfer in="SourceAlpha">
+          <feFuncA type="table" tableValues="1 0" />
+        </feComponentTransfer>
+        <feGaussianBlur stdDeviation="3" />
+        <feOffset class="lightoffset" dx="5" dy="0" result="offsetblur" />
+        <feFlood class="groundcolor" flood-color="#5f452750" result="color" />
+        <feComposite in2="offsetblur" operator="in" />
+        <feComposite in2="SourceAlpha" operator="in" />
+        <feMerge>
+          <feMergeNode in="SourceGraphic" />
+          <feMergeNode />
+        </feMerge>
+      </filter>
+
+      <filter id="blur1" x="0" y="0">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+      </filter>
+
+      <filter id="blur2" x="0" y="0">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="12" />
+      </filter>
+
+      <filter id="blur3" x="0" y="0">
+        <feGaussianBlur class="haloblur" in="SourceGraphic" stdDeviation="8" />
+      </filter>
+    </defs>
+
+    <linearGradient id="sungrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fefefe" stop-opacity="1" />
+      <stop offset="34%" stop-color="#fefefe" stop-opacity="1" />
+      <stop offset="34%" stop-color="#fefefe" stop-opacity="0" />
+      <stop offset="100%" stop-color="#fefefe" stop-opacity="0" />
+    </linearGradient>
+
+    <linearGradient id="sungrad2" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f8ff98" stop-opacity="0.8" />
+      <stop offset="40%" stop-color="#f8ff98" stop-opacity="0.8" />
+      <stop offset="40%" stop-color="#f8ff98" stop-opacity="0" />
+      <stop offset="100%" stop-color="#f8ff98" stop-opacity="0" />
+    </linearGradient>
+
+    <linearGradient id="sungrad3" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffcf4f" stop-opacity="0.8" />
+      <stop offset="40%" stop-color="#ffcf4f" stop-opacity="0.8" />
+      <stop offset="40%" stop-color="#ffcf4f" stop-opacity="0" />
+      <stop offset="100%" stop-color="#ffcf4f" stop-opacity="0" />
+    </linearGradient>
+
+    <path
+      class="halo"
+      x="0"
+      attr.d="{{
+        'M0 ' +
+          height +
+          ' C ' +
+          quart +
+          ' ' +
+          height +
+          ', ' +
+          quart +
+          ' ' +
+          upheight +
+          ', ' +
+          half +
+          ' ' +
+          upheight +
+          ', ' +
+          tqrt +
+          ' ' +
+          upheight +
+          ', ' +
+          tqrt +
+          ' ' +
+          height +
+          ', ' +
+          width +
+          ' ' +
+          height
+      }}"
+      fill="#FF9D52"
+      filter="url(#blur3)"
+    />
+
+    <circle
+      class="sunpart"
+      cx="50vw"
+      attr.cy="{{ sHP(context.getState().getSun().getYOffset()) }}"
+      r="65"
+      fill="url(#sungrad3)"
+      filter="url(#blur1)"
+      style="visibility: hidden"
+    ></circle>
+    <circle
+      class="sunpart"
+      cx="50vw"
+      attr.cy="{{ sHP(context.getState().getSun().getYOffset()) }}"
+      r="50"
+      fill="url(#sungrad2)"
+      filter="url(#blur1)"
+    ></circle>
+    <circle
+      class="sunpart"
+      cx="50vw"
+      attr.cy="{{ sHP(context.getState().getSun().getYOffset()) }}"
+      r="30"
+      fill="url(#sungrad)"
+      filter="url(#blur1)"
+    ></circle>
+    <path
+      class="reflect1"
+      attr.d="{{
+        'M' +
+          sWP(15) +
+          ' ' +
+          height +
+          ' L' +
+          sWP(65) +
+          ' ' +
+          sHP(context.getState().getSun().getReflectOffset()) +
+          ' L' +
+          sWP(115) +
+          ' ' +
+          height
+      }}"
+      fill="#f8ff9835"
+      filter="url(#blur2)"
+    />
+    <path
+      class="reflect2"
+      attr.d="{{
+        'M' +
+          sWP(35) +
+          ' ' +
+          height +
+          ' L' +
+          sWP(65) +
+          ' ' +
+          sHP(context.getState().getSun().getReflectOffset()) +
+          ' L' +
+          sWP(95) +
+          ' ' +
+          height
+      }}"
+      fill="#fefefe35"
+      filter="url(#blur2)"
+    />
+    <path
+      attr.d="{{
+        'M' +
+          sWP(310) +
+          ' ' +
+          sHP(-20) +
+          ' V' +
+          sHP(-30) +
+          ' H' +
+          sWP(380) +
+          ' V' +
+          sHP(-20) +
+          ' M' +
+          sWP(309) +
+          ' ' +
+          sHP(-30) +
+          'V' +
+          sHP(-32) +
+          ' H' +
+          sWP(381) +
+          ' V' +
+          sHP(-30)
+      }}"
+      fill="#333"
+      filter="url(/#inset-shadow)"
+    />
+    <path
+      attr.d="{{
+        'M' +
+          sWP(310) +
+          ' ' +
+          sHP(-32) +
+          ' V' +
+          sHP(-37) +
+          ' H' +
+          sWP(315) +
+          ' V' +
+          sHP(-32) +
+          ' M' +
+          sWP(309) +
+          ' ' +
+          sHP(-37) +
+          'V' +
+          sHP(-39) +
+          ' H' +
+          sWP(315) +
+          ' V' +
+          sHP(-37) +
+          ' M' +
+          sWP(315) +
+          ' ' +
+          sHP(-32) +
+          'V' +
+          sHP(-42) +
+          ' H' +
+          sWP(375) +
+          ' V' +
+          sHP(-32) +
+          ' M' +
+          sWP(314) +
+          ' ' +
+          sHP(-42) +
+          'V' +
+          sHP(-44) +
+          ' H' +
+          sWP(376) +
+          ' V' +
+          sHP(-42) +
+          ' M' +
+          sWP(375) +
+          ' ' +
+          sHP(-32) +
+          'V' +
+          sHP(-37) +
+          ' H' +
+          sWP(380) +
+          ' V' +
+          sHP(-32) +
+          ' M' +
+          sWP(375) +
+          ' ' +
+          sHP(-37) +
+          'V' +
+          sHP(-39) +
+          ' H' +
+          sWP(381) +
+          ' V' +
+          sHP(-37)
+      }}"
+      fill="#333"
+      filter="url(/#inset-shadow)"
+    />
+    <path
+      attr.d="{{
+        'M' +
+          sWP(332) +
+          ' ' +
+          sHP(-44) +
+          ' V' +
+          sHP(-48) +
+          ' H' +
+          sWP(358) +
+          ' V' +
+          sHP(-44) +
+          ' M' +
+          sWP(331) +
+          ' ' +
+          sHP(-48) +
+          ' V' +
+          sHP(-49) +
+          ' H' +
+          sWP(359) +
+          ' V' +
+          sHP(-48)
+      }}"
+      fill="#333"
+      filter="url(/#inset-shadow)"
+    />
+    <path
+      attr.d="{{
+        'M' +
+          sWP(332) +
+          ' ' +
+          sHP(-49) +
+          ' V' +
+          sHP(-43) +
+          ' H' +
+          sWP(358) +
+          ' V' +
+          sHP(-49) +
+          ' M' +
+          sWP(331) +
+          ' ' +
+          sHP(-53) +
+          ' V' +
+          sHP(-44) +
+          ' H' +
+          sWP(359) +
+          ' V' +
+          sHP(-53)
+      }}"
+      fill="#333"
+      filter="url(/#inset-shadow)"
+    />
+    <path
+      attr.d="{{
+        'M' +
+          sWP(202) +
+          ' ' +
+          sHP(-20) +
+          ' V' +
+          sHP(2) +
+          ' H' +
+          sWP(310) +
+          ' V' +
+          sHP(-20) +
+          ' M' +
+          sWP(310) +
+          ' ' +
+          sHP(-20) +
+          ' H' +
+          sWP(750) +
+          ' V' +
+          sHP(2) +
+          ' H' +
+          sWP(310)
+      }}"
+      fill="#222"
+      filter="url(/#inset-shadow3)"
+    />
+    <path
+      attr.d="{{
+        'M' +
+          sWP(212) +
+          ' ' +
+          sHP(-20) +
+          ' L' +
+          sWP(220) +
+          ' ' +
+          sHP(-40) +
+          ' L' +
+          sWP(230) +
+          ' ' +
+          sHP(-35) +
+          ' L' +
+          sWP(240) +
+          ' ' +
+          sHP(-40) +
+          ' L' +
+          sWP(250) +
+          ' ' +
+          sHP(-30) +
+          ' L' +
+          sWP(260) +
+          ' ' +
+          sHP(-40) +
+          ' L' +
+          sWP(270) +
+          ' ' +
+          sHP(-30) +
+          ' L' +
+          sWP(280) +
+          ' ' +
+          sHP(-40) +
+          ' L' +
+          sWP(290) +
+          ' ' +
+          sHP(-30) +
+          ' L' +
+          sWP(300) +
+          ' ' +
+          sHP(-20) +
+          ' H' +
+          sWP(400) +
+          ' L' +
+          sWP(420) +
+          ' ' +
+          sHP(-40) +
+          ' L' +
+          sWP(430) +
+          ' ' +
+          sHP(-30) +
+          ' L' +
+          sWP(440) +
+          ' ' +
+          sHP(-40) +
+          ' L' +
+          sWP(450) +
+          ' ' +
+          sHP(-30) +
+          ' L' +
+          sWP(460) +
+          ' ' +
+          sHP(-50) +
+          ' L' +
+          sWP(470) +
+          ' ' +
+          sHP(-40) +
+          ' L' +
+          sWP(480) +
+          ' ' +
+          sHP(-30) +
+          ' L' +
+          sWP(490) +
+          ' ' +
+          sHP(-40) +
+          ' L' +
+          sWP(500) +
+          ' ' +
+          sHP(-60) +
+          ' L' +
+          sWP(510) +
+          ' ' +
+          sHP(-50) +
+          ' L' +
+          sWP(520) +
+          ' ' +
+          sHP(-70) +
+          ' L' +
+          sWP(530) +
+          ' ' +
+          sHP(-60) +
+          ' L' +
+          sWP(540) +
+          ' ' +
+          sHP(-50) +
+          ' L' +
+          sWP(550) +
+          ' ' +
+          sHP(-60) +
+          ' L' +
+          sWP(560) +
+          ' ' +
+          sHP(-40) +
+          ' L' +
+          sWP(570) +
+          ' ' +
+          sHP(-50) +
+          ' L' +
+          sWP(580) +
+          ' ' +
+          sHP(-40) +
+          ' L' +
+          sWP(590) +
+          ' ' +
+          sHP(-60) +
+          ' L' +
+          sWP(600) +
+          ' ' +
+          sHP(-50) +
+          ' L' +
+          sWP(610) +
+          ' ' +
+          sHP(-60) +
+          ' L' +
+          sWP(620) +
+          ' ' +
+          sHP(-50) +
+          ' L' +
+          sWP(630) +
+          ' ' +
+          sHP(-60) +
+          ' L' +
+          sWP(640) +
+          ' ' +
+          sHP(-70) +
+          ' L' +
+          sWP(650) +
+          ' ' +
+          sHP(-50) +
+          ' L' +
+          sWP(660) +
+          ' ' +
+          sHP(-70) +
+          ' L' +
+          sWP(670) +
+          ' ' +
+          sHP(-60) +
+          ' L' +
+          sWP(680) +
+          ' ' +
+          sHP(-40) +
+          ' L' +
+          sWP(690) +
+          ' ' +
+          sHP(-50) +
+          ' L' +
+          sWP(700) +
+          ' ' +
+          sHP(-30) +
+          ' L' +
+          sWP(710) +
+          ' ' +
+          sHP(-60) +
+          ' L' +
+          sWP(720) +
+          ' ' +
+          sHP(-40) +
+          ' L' +
+          sWP(730) +
+          ' ' +
+          sHP(-50) +
+          ' L' +
+          sWP(740) +
+          ' ' +
+          sHP(-20)
+      }}"
+      fill="#222"
+      filter="url(/#inset-shadow2)"
+    />
+  </svg>
+  <div class="sea"></div>
+</div>
+
+<p class="currenttext">
+  WELCOME, DEAR RESIDENT<br />
+  OF BELGIUM...
+</p>
+
+<button class="continuebtn" (click)="makeSunRise()">CONTINUE</button>
+
+<button #yesBtn class="yesbtn" (click)="makeSunRise(yesBtn)">YES</button>
+<button #noBtn class="nobtn" (click)="makeSunRise(noBtn)">NO</button>
+
+<!-- sky #287DB3-->
+
+<!-- sun center #FEFEFE-->
+<!-- sun outer1 #F8FF98-->
+<!-- sun outer2 #FFCF4F-->
+<!-- sun salmon halo #FF9D52-->
+
+<!-- sea #114F7E -->
