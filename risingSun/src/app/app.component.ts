@@ -8,7 +8,7 @@ import { SunContext } from './suncontext';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'rebirthForRomania';
+  title = 'risingSun';
   context: SunContext;
   scrollMode = false;
   height = 0;
